@@ -27,13 +27,15 @@ jobs:
         echo "${{ steps.archivos_modificados.outputs.modified }}"
         echo "Added+Modified:"
 
-    - name: Push generated webpage to another repository
-      uses: nkoppel/push-files-to-another-repository@1.1.0
+    - name: Push JSON schema for YAML configuration of CLI
+      uses: RomanosTrechlis/actions-copy-files@master
       env:
-        API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source-files: ${{ steps.archivos_modificados.outputs.all }}
         destination-username: 'dantonbustos'
         destination-repository: 'deploy-multi-repo-02'
         destination-directory: ''
+        destination-branch : 'main'
         commit-email: 'dantonbustos@me.com'
+        commit-username: 'dantonbustos'
