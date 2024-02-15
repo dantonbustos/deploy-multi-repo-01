@@ -12,7 +12,7 @@ jobs:
       id: archivos_modificados
       with:
         format: space-delimited
-        token: ${{ secrets.TOKEN_DBUSTOS }}
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Printing
       run: |
         echo "All:"
