@@ -12,7 +12,7 @@ jobs:
       id: archivos_modificados
       with:
         format: space-delimited
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.TOKEN_DBUSTOS }}
     - name: Printing
       run: |
         echo "All:"
@@ -30,7 +30,7 @@ jobs:
     - name: Push JSON schema for YAML configuration of CLI
       uses: RomanosTrechlis/actions-copy-files@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.TOKEN_DBUSTOS }}
       with:
         source-files: ${{ steps.archivos_modificados.outputs.all }}
         destination-username: 'dantonbustos'
