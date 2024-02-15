@@ -7,7 +7,7 @@ jobs:
   homologa-archivos-drupal:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.1.0
+    - uses: actions/checkout@v4
     - uses: jitterbit/get-changed-files@v1
       id: archivos_modificados
       with:
@@ -30,7 +30,7 @@ jobs:
     - name: Push JSON schema for YAML configuration of CLI
       uses: RomanosTrechlis/actions-copy-files@master
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_DBUSTOS }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         source-files: ${{ steps.archivos_modificados.outputs.all }}
         destination-username: 'dantonbustos'
