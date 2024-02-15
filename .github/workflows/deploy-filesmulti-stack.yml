@@ -27,12 +27,13 @@ jobs:
         echo "${{ steps.archivos_modificados.outputs.modified }}"
         echo "Added+Modified:"
 
-    - uses: GuillaumeFalourd/copy-push-files@v1
+    - name: Push generated webpage to another repository
+      uses: nkoppel/push-files-to-another-repository@1.1.0
+      env:
+        API_TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
       with:
-        email: 'dantonbustos@me.com'
-        name: 'dantonbustos'
-        commit_message: 'Copia archivos a -> pruebas jajaja'
-        target_branch: 'main'
-        source_files: ${{ steps.archivos_modificados.outputs.all }}
-        remote_repository: https://github.com/dantonbustos/deploy-multi-repo-02
-        access_token: ${{ secrets.GITHUB_TOKEN }}
+        source-files: ${{ steps.archivos_modificados.outputs.all }}
+        destination-username: 'dantonbustos'
+        destination-repository: 'deploy-multi-repo-02'
+        destination-directory: ''
+        commit-email: 'dantonbustos@me.com'
