@@ -26,11 +26,17 @@ jobs:
         echo "Modified:"
         echo "${{ steps.archivos_modificados.outputs.modified }}"
         echo "Added+Modified:"
-    
+
+    - name: Setup credentials to access private repositories
+      run: |
+          git config --global user.email "dantonbustos@me.com"
+          git config --global user.name "dantonbustos"
+          git config --global url.https://${{ secrets.GITHUB_TOKEN }}@github.com/.insteadOf https://github.com/
+          
     - name: Push JSON schema for YAML configuration of CLI
       uses: RomanosTrechlis/actions-copy-files@master
       env:
-        GITHUB_TOKEN: ${{ secrets.TOKEN_DBUSTOS }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         source-files: ${{ steps.archivos_modificados.outputs.all }}
         destination-username: 'dantonbustos'
