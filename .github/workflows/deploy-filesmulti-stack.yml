@@ -27,21 +27,12 @@ jobs:
         echo "${{ steps.archivos_modificados.outputs.modified }}"
         echo "Added+Modified:"
 
-    - name: Setup credentials to access private repositories
-      run: |
-          git config --global user.email "dantonbustos@me.com"
-          git config --global user.name "dantonbustos"
-          git config --global url.https://${{ secrets.GITHUB_TOKEN }}@github.com/.insteadOf https://github.com/
-          
-    - name: Push JSON schema for YAML configuration of CLI
-      uses: RomanosTrechlis/actions-copy-files@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - uses: GuillaumeFalourd/copy-push-files@v1
       with:
-        source-files: ${{ steps.archivos_modificados.outputs.all }}
-        destination-username: 'dantonbustos'
-        destination-repository: 'deploy-multi-repo-02'
-        destination-directory: ''
-        destination-branch : 'main'
-        commit-email: 'dantonbustos@me.com'
-        commit-username: 'dantonbustos'
+        email: 'dantonbustos@me.com'
+        name: 'dantonbustos'
+        commit_message: 'Copia archivos a -> pruebas jajaja'
+        target_branch: 'main'
+        source_files: ${{ steps.archivos_modificados.outputs.all }}
+        remote_repository: https://github.com/dantonbustos/deploy-multi-repo-02
+        access_token: ${{ secrets.GITHUB_TOKEN }}
