@@ -37,3 +37,4 @@ jobs:
         destination-repository: 'deploy-multi-repo-02'
         destination-directory: '/'
         commit-email: 'dantonbustos@me.com'
+        commit-username: 'dantonbustos'
