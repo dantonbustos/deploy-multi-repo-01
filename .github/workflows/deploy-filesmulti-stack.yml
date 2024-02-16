@@ -30,7 +30,7 @@ jobs:
     - name: Push JSON schema for YAML configuration of CLI
       uses: RomanosTrechlis/actions-copy-files@master
       env:
-        GITHUB_TOKEN: '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'
+        GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
       with:
         source-files: ${{ steps.archivos_modificados.outputs.all }}
         destination-username: 'dantonbustos'
